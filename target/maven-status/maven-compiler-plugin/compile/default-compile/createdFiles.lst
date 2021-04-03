@@ -1,0 +1,9 @@
+com/azure/spring/data/cosmostutorial/UserRepository.class
+module-info.class
+com/azure/spring/data/cosmostutorial/User.class
+com/azure/spring/data/cosmostutorial/Address.class
+com/azure/spring/data/cosmostutorial/SampleAppConfiguration$ResponseDiagnosticsProcessorImplementation.class
+com/azure/spring/data/cosmostutorial/ReactiveUserRepository.class
+com/azure/spring/data/cosmostutorial/SampleApplication.class
+com/azure/spring/data/cosmostutorial/SampleAppConfiguration.class
+com/azure/spring/data/cosmostutorial/CosmosProperties.class
