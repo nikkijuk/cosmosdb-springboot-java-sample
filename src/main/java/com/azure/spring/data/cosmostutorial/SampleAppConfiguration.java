@@ -1,5 +1,3 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 package com.azure.spring.data.cosmostutorial;
 
 import com.azure.cosmos.CosmosClientBuilder;
@@ -25,38 +23,40 @@ import org.springframework.lang.Nullable;
 @EnableReactiveCosmosRepositories
 @PropertySource("classpath:application.properties")
 public class SampleAppConfiguration extends AbstractCosmosConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(SampleAppConfiguration.class);
 
-    @Autowired
-    private CosmosProperties properties;
+  private static final Logger logger = LoggerFactory.getLogger(SampleAppConfiguration.class);
 
-    @Bean
-    public CosmosClientBuilder cosmosClientBuilder() {
-        DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
-        return new CosmosClientBuilder()
-            .endpoint(properties.getUri())
-            .key(properties.getKey())
-            .directMode(directConnectionConfig);
-    }
+  @Autowired
+  private CosmosProperties properties;
 
-    @Bean
-    public CosmosConfig cosmosConfig() {
-        return CosmosConfig.builder()
-                           .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
-                           .enableQueryMetrics(properties.isQueryMetricsEnabled())
-                           .build();
-    }
+  @Bean
+  public CosmosClientBuilder cosmosClientBuilder() {
+    DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
+    return new CosmosClientBuilder()
+        .endpoint(properties.getUri())
+        .key(properties.getKey())
+        .directMode(directConnectionConfig);
+  }
+
+  @Bean
+  public CosmosConfig cosmosConfig() {
+    return CosmosConfig.builder()
+        .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
+        .enableQueryMetrics(properties.isQueryMetricsEnabled())
+        .build();
+  }
+
+  @Override
+  protected String getDatabaseName() {
+    return "testdb";
+  }
+
+  private static class ResponseDiagnosticsProcessorImplementation implements
+      ResponseDiagnosticsProcessor {
 
     @Override
-    protected String getDatabaseName() {
-        return "testdb";
+    public void processResponseDiagnostics(@Nullable ResponseDiagnostics responseDiagnostics) {
+      logger.info("Response Diagnostics {}", responseDiagnostics);
     }
-
-    private static class ResponseDiagnosticsProcessorImplementation implements ResponseDiagnosticsProcessor {
-
-        @Override
-        public void processResponseDiagnostics(@Nullable ResponseDiagnostics responseDiagnostics) {
-            logger.info("Response Diagnostics {}", responseDiagnostics);
-        }
-    }
+  }
 }

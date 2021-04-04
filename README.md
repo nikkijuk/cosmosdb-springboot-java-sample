@@ -1,12 +1,12 @@
 # cosmosdb-springboot-java-sample
 
-Copy of Microsofts azure cosmosdb example app with needed fixes and some modifications
+Copy of Microsofts azure cosmosdb example app with needed fixes and some small modifications
 
 ## Content
 
 Small example how to use `azure-spring-data-cosmos` Java SQL API with spring boot.
 
-## Original arcticle
+## Original article
 
 See original article for detailed setup information
 
@@ -39,3 +39,10 @@ mvn clean install spring-boot:run
 
 ## Resources
 
+Cosmos db sql api
+
+https://docs.microsoft.com/en-us/azure/cosmos-db/sql-query-getting-started
+
+Cosmos db spring boot starter
+
+https://docs.microsoft.com/en-us/java/api/overview/azure/spring-boot-starter-cosmos-readme?view=azure-java-stable
